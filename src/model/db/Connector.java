@@ -7,7 +7,7 @@ import java.util.Properties;
 /**
  * 读取配置文件 生成数据库连接
  * 
- * @author Eric_Chan
+ * @author Pluto
  *
  */
 public class Connector {

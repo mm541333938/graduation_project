@@ -4,7 +4,7 @@ import java.sql.Date;
 
 /**
  * 
- * @author Eric_Chan 数据库歌手信息模型
+ * @author Pluto 数据库歌手信息模型
  *
  */
 public class SingerModel {

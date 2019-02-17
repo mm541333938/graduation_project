@@ -7,7 +7,7 @@ import com.mysql.jdbc.ResultSet;
 
 /**
  * 
- * @author Eric_Chan 数据库音乐模型
+ * @author Pluto 数据库音乐模型
  */
 public class MusicModel {
 	private String name; // 音乐名

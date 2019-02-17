@@ -9,7 +9,7 @@ import model.db.DbHelper;
 
 /**
  * 
- * @author Eric_Chan 数据库新闻模型
+ * @author Pluto 数据库新闻模型
  */
 public class NewsModel {
 	private String title;

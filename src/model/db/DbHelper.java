@@ -9,8 +9,8 @@ import org.json.JSONObject;
 import com.mysql.jdbc.ResultSetMetaData;
 
 /**
- * @author Eric_Chan
- * @version 2016.10.14
+ * @author Pluto
+ * @version 
  */
 public class DbHelper {
 	private String ipAddress = "localhost";
