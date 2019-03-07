@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Lyric~音乐工厂</title>
+	<title>Music Walking</title>
     <link rel="stylesheet" href="css/frame.css">
     <link rel="stylesheet" href="css/music.css">
     <link rel="stylesheet" href="css/form.css">
@@ -12,7 +12,7 @@
 <body>	
 <div class="header">
 	<div class="header-center center">
-		<h1>Lyric 音乐场</h1>
+		<h1>Soul~ 音乐场</h1>
 		<ul class="nav">
 			<li><a href="./index" class="active">发现音乐</a></li>
 			<li><a href="./my">我的音乐</a></li>
@@ -34,11 +34,11 @@
 		<div class="center">
 			<ul class="sub-nav">
 				<li><a class="active" href="javascript:;">推荐</a></li>
-				<li><a href="javascript:;">排行榜</a></li>
-				<li><a href="javascript:;">歌单</a></li>
-				<li><a href="javascript:;">主播电台</a></li>
-				<li><a href="javascript:;">歌手</a></li>
-				<li><a href="javascript:;">新碟上架</a></li>
+				<li><a href="./index#rank">排行榜</a></li>
+                <li><a href="./index#mscList">歌单</a></li>
+				<!-- <li><a href="javascript:;">主播电台</a></li>
+				<li><a href="javascript:;">歌手</a></li> -->
+				<li><a href="./index#newCD">新碟上架</a></li>
 			</ul>
 		</div>
 	</div>

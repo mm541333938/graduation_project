@@ -1,16 +1,20 @@
 package model.db;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.mysql.jdbc.ResultSetMetaData;
-
 /**
- * @author Pluto
- * @version 
+ * @author R.kyo
+ * @version 2018.10.24
  */
 public class DbHelper {
 	private String ipAddress = "localhost";
@@ -18,11 +22,12 @@ public class DbHelper {
 	private String user = "";
 	private String pwd = "";
 	private String dbName = "";
-	private Connection conn;
+	private Connection conn = null;
 	private static DbHelper instance = null; // 单例
+	private static int label = 0;
 
 	/**
-	 * 检查是否导入 mysql-connector-java.jar
+	 * 构造方法调用数据库驱动 检查是否导入 mysql-connector-java.jar
 	 */
 	private DbHelper() {
 		try {
@@ -38,6 +43,7 @@ public class DbHelper {
 	 * @return DbConnection
 	 */
 	public static DbHelper getInstance() {
+		label = 10;
 		if (DbHelper.instance == null) {
 			instance = new DbHelper();
 			return DbHelper.instance;
@@ -50,6 +56,7 @@ public class DbHelper {
 	 * 连接数据库
 	 */
 	private void connect() {
+		label = 20;
 		String url = String.format("jdbc:mysql://%s:%s/%s?useUnicode=true&characterEncoding=UTF-8", this.ipAddress,
 				this.port, this.dbName);
 		try {
@@ -63,11 +70,15 @@ public class DbHelper {
 	/**
 	 * 提供参数 并连接数据库 默认为本地数据库，端口为3306
 	 * 
-	 * @param user   用户名
-	 * @param pwd    密码
-	 * @param dbName 数据库名
+	 * @param user
+	 *            用户名
+	 * @param pwd
+	 *            密码
+	 * @param dbName
+	 *            数据库名
 	 */
 	public void connSQL(String user, String pwd, String dbName) {
+		label = 30;
 		this.user = user;
 		this.pwd = pwd;
 		this.dbName = dbName;
@@ -77,16 +88,19 @@ public class DbHelper {
 	}
 
 	public void connSQL(String user, String pwd, String dbName, int port) {
+		label = 40;
 		this.port = port;
 		this.connSQL(user, pwd, dbName);
 	}
 
 	public void connSQL(String user, String pwd, String dbName, String ipAddress) {
+		label = 50;
 		this.ipAddress = ipAddress;
 		this.connSQL(user, pwd, dbName);
 	}
 
 	public void connSQL(String user, String pwd, String dbName, String ipAddress, int port) {
+		label = 60;
 		this.ipAddress = ipAddress;
 		this.port = port;
 		this.connSQL(user, pwd, dbName);
@@ -95,10 +109,12 @@ public class DbHelper {
 	/**
 	 * 将表内数据输出至控制台
 	 * 
-	 * @param tableName 表名
+	 * @param tableName
+	 *            表名
 	 * @throws Exception
 	 */
 	public void showTable(String tableName) {
+		label = 70;
 		this.connect();
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -121,6 +137,7 @@ public class DbHelper {
 	 * @return ResultSet
 	 */
 	public ResultSet executeQuery(String sql) {
+		label = 80;
 		this.connect();
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -142,6 +159,7 @@ public class DbHelper {
 	 * @return ResultSet
 	 */
 	public ResultSet executeQuery(String sql, Object... obj) {
+		label = 90;
 		this.connect();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -165,6 +183,7 @@ public class DbHelper {
 	 * @return int
 	 */
 	public int executeUpdate(String sql) {
+		label = 100;
 		this.connect();
 		Statement stmt = null;
 		int rs = 0;
@@ -186,20 +205,21 @@ public class DbHelper {
 	 * @return int
 	 */
 	public int executeUpdate(String sql, Object... obj) {
+		label = 110;
 		this.connect();
 		PreparedStatement pstmt = null;
-		int rs = 0;
+		int num = 0;
 		try {
 			pstmt = conn.prepareStatement(sql);
 			for (int i = 0; i < obj.length; i++) {
 				pstmt.setObject(i + 1, obj[i]);
 			}
-			rs = pstmt.executeUpdate();
+			num = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			this.free(conn, pstmt, null);
 		}
-		return rs;
+		return num;
 	}
 
 	/**
@@ -209,7 +229,9 @@ public class DbHelper {
 	 * @throws SQLException
 	 */
 	public static void showResultSet(ResultSet rs) {
-		ResultSetMetaData rsmd;
+
+		label = 120;
+		ResultSetMetaData rsmd = null;
 		try {
 			rsmd = (ResultSetMetaData) rs.getMetaData();
 			int columnCount = rsmd.getColumnCount();
@@ -228,7 +250,7 @@ public class DbHelper {
 				System.out.println();
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			System.out.println(label);
 			e.printStackTrace();
 		}
 
@@ -241,6 +263,7 @@ public class DbHelper {
 	 * @return Boolean
 	 */
 	public Boolean isExist(String sql) {
+		label = 130;
 		this.connect();
 		Statement stmt = null;
 		Boolean isEx = false;
@@ -265,6 +288,7 @@ public class DbHelper {
 	 * @return Boolean
 	 */
 	public Boolean isExist(String sql, Object... obj) {
+		label = 140;
 		this.connect();
 		PreparedStatement pstmt = null;
 		Boolean isEx = false;
@@ -328,10 +352,12 @@ public class DbHelper {
 	/**
 	 * 将ResultSet 转化成 json
 	 * 
-	 * @param rs ResultSet
+	 * @param rs
+	 *            ResultSet
 	 * @return String json
 	 */
 	public static String resultSetToJson(ResultSet rs) {
+		label = 160;
 		JSONArray array = new JSONArray();
 		try {
 			// 获取列数
@@ -345,6 +371,7 @@ public class DbHelper {
 
 				// 遍历每一列
 				for (int i = 1; i <= columnCount; i++) {
+					// 读取列名
 					String columnName = metaData.getColumnLabel(i);
 					String value = rs.getString(columnName);
 					jsonObj.put(columnName, value);
@@ -354,24 +381,23 @@ public class DbHelper {
 
 			return array.toString();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			System.out.println(label);
 			e.printStackTrace();
 		} catch (JSONException e) {
+			System.out.println(label);
 			e.printStackTrace();
 		}
 		return "error";
 	}
 
-	public static void main(String args[]) throws SQLException {
-		DbHelper connector = DbHelper.getInstance();
-		connector.connSQL("root", "1q2w3e", "student", 3307);
-		connector.showTable("student");
-		ResultSet rs = connector.executeQuery("SELECT * FROM student WHERE st_name=? and st_Password=?", "Jack",
-				"1234");
-		DbHelper.showResultSet(rs);
-		Boolean isEx = connector.isExist("SELECT * FROM student WHERE st_name=? and st_Password=?", "Jack", "1234");
-		System.out.println(isEx);
-		connector.close();
-	}
+	/*
+	 * 数据库测试 public static void main(String args[]) throws SQLException {
+	 * DbHelper connector = DbHelper.getInstance(); connector.connSQL("root",
+	 * "root", "music", 3306); connector.showTable("app_Music"); ResultSet rs =
+	 * connector.executeQuery("SELECT * FROM app_Music");
+	 * DbHelper.showResultSet(rs); Boolean isEx =
+	 * connector.isExist("SELECT * FROM app_Music"); System.out.println(isEx);
+	 * connector.close(); }
+	 */
 
 }

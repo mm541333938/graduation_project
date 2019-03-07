@@ -2,11 +2,16 @@ package model;
 
 import java.util.Random;
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import com.mysql.jdbc.ResultSet;
 import model.db.Connector;
 import model.db.DbHelper;
 
+/**
+ * 数据库用户信息
+ * 
+ * @author R.kyo
+ */
 public class UserModel {
 	private String name;
 	private String repwd;
@@ -15,6 +20,8 @@ public class UserModel {
 	private int id; // 用户id
 	private Date regDate; // 注册日期
 	private int root = 0; // 是否为管理员
+
+	static int label = 0;
 
 	public String getRepwd() {
 		return repwd;
@@ -79,6 +86,7 @@ public class UserModel {
 	 * @return
 	 */
 	public boolean isEmail(String acc) {
+		label = 10;
 		if (acc == null || acc.length() < 5) {
 			// #如果帐号小于5位，则肯定不可能为邮箱帐号eg: x@x.x
 			return false;
@@ -118,6 +126,7 @@ public class UserModel {
 	 * 新注册用户存入数据库
 	 */
 	public void saveSql() {
+		label = 20;
 		DbHelper connector = Connector.getInstance();
 		connector.executeUpdate(
 				"INSERT INTO `app_User` (`email`, `pwd`, `id`, `regDate`, `root`) VALUES (?, ?, ?, ?, ?)", this.email,
@@ -128,17 +137,21 @@ public class UserModel {
 
 	@SuppressWarnings("deprecation")
 	public String register() {
+		label = 30;
 		DbHelper connector = Connector.getInstance();
+		label = 40;
 		if (!isEmail(this.email)) {
 			return "邮箱输入有误";
 		}
+		label = 50;
 		if (connector.isExist("SELECT * FROM app_User WHERE email=?", this.email)) {
 			return "该邮箱已注册";
 		}
+		label = 60;
 		if (!this.pwd.equals(this.repwd)) {
 			return "密码不一致";
 		}
-
+		label = 70;
 		java.util.Date date = new java.util.Date();
 		this.regDate = new Date(date.getYear(), date.getMonth(), date.getDate());
 		Random random = new Random();
@@ -151,7 +164,9 @@ public class UserModel {
 	}
 
 	public String login() {
+		label = 80;
 		DbHelper connector = Connector.getInstance();
+		label = 10;
 		Boolean isCorrectEmail = connector.isExist("SELECT email, pwd, id, root FROM app_user WHERE email=?",
 				this.email);
 		if (!isCorrectEmail) {
@@ -162,6 +177,7 @@ public class UserModel {
 		if (!isCorrectPWD) {
 			return "密码有误";
 		}
+		label = 90;
 		ResultSet rs = (ResultSet) connector.executeQuery("SELECT id FROM app_user " + "WHERE email=?", this.email);
 		try {
 			rs.next();
@@ -174,22 +190,32 @@ public class UserModel {
 	}
 
 	public static String getUserInfo(String uid) {
+		label = 100;
 		DbHelper connector = Connector.getInstance();
+
 		ResultSet rs = (ResultSet) connector.executeQuery("SELECT name FROM app_info WHERE user_id=?", uid);
 		try {
+
 			rs.next();
 			return rs.getString(1);
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
-		return "Eric";
+		return "R.kyo";
 	}
 
 	public static String getMyMusic(String uid) {
+		label = 110;
 		DbHelper connector = Connector.getInstance();
 		ResultSet rs = (ResultSet) connector.executeQuery(
 				"SELECT music_id, name, singer_name FROM app_collection NATURAL JOIN app_Music NATURAL JOIN app_singerRmusic NATURAL JOIN app_Singer WHERE user_id=? ORDER BY colDate DESC",
 				uid);
 		return DbHelper.resultSetToJson(rs);
+	}
+
+	public void upUserInfo(String name, String uid) {
+		label = 120;
+		DbHelper connector = Connector.getInstance();
+		connector.executeUpdate("UPDATE `app_Info` SET `name` = ? WHERE `user_id` = ?", name, uid);
 	}
 }

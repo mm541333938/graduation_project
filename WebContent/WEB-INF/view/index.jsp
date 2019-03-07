@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Lyric~音乐工厂</title>
+	<title>Music Walking</title>
     <link rel="stylesheet" href="css/frame.css">
     <link rel="stylesheet" href="css/music.css">
     <link rel="stylesheet" href="css/index.css">
@@ -11,7 +11,7 @@
 <body>	
 <div class="header">
 	<div class="header-center center">
-		<h1>Lyric 音乐场</h1>
+		<h1>Soul~ 音乐场</h1>
 		<ul class="nav">
 			<li><a href="javascript:;" class="active">发现音乐</a></li>
 			<li><a href="./my">我的音乐</a></li>
@@ -21,7 +21,7 @@
 		<div class="top-tool">
             <div class="top-search">
                 <i class="icn-search"></i>
-                <input type="text" placeholder="单曲/歌手/专辑/歌单/用户">
+                <input type="text" placeholder="单曲/歌手/专辑/歌单/用户" name="musicname" >
                 <ul class="result"></ul>
             </div>
 			<div class="top-user">
@@ -40,11 +40,11 @@
 		<div class="center">
 			<ul class="sub-nav">
 				<li><a class="active" href="javascript:;">推荐</a></li>
-				<li><a href="javascript:;">排行榜</a></li>
-				<li><a href="javascript:;">歌单</a></li>
-				<li><a href="javascript:;">主播电台</a></li>
-				<li><a href="javascript:;">歌手</a></li>
-				<li><a href="javascript:;">新碟上架</a></li>
+				<li><a href="#rank">排行榜</a></li>
+				<li><a href="#mscList">歌单</a></li>
+				<!-- <li><a href="javascript:;">主播电台</a></li>
+				<li><a href="javascript:;">歌手</a></li> -->
+				<li><a href="#newCD">新碟上架</a></li>
 			</ul>
 		</div>
 	</div>
@@ -55,11 +55,11 @@
 
 		<div class="cloumn main-top">
             <div class="btns">
-                <a href="javascript:;" class="btn-down" title="客户端下载">客户端下载</a>
-                <a href="javascript:;" class="btn-reg sm">注册帐号</a>
+                <a href="javascript:;" class="btn-down" title="软件下载">软件下载</a>
+                <a href="./reg" class="btn-reg sm">注册帐号</a>
                 <a class="tool-border"></a>
-                <a href="javascript:;" class="btn-browse sm">站台一览</a>
-                <a href="javascript:;" class="btn-gift sm">等级礼包</a>
+                <a href="./index;" class="btn-browse sm">站台一览</a>
+                <a href="javascript:;" class="btn-gift sm">欢迎光临</a>
             </div>
             <div class="slides">
                 <ul class="points">
@@ -114,7 +114,7 @@
 
         <div class="column main-pro">
             <div class="section">
-                <h3>新碟上架<span>PROMOTION</span></h3>
+                <h3><a id = "newCD"></a>新碟上架<span>PROMOTION</span></h3>
                 <ul class="pro-list">
                     <li><a href="javascript:;"><img src="image/view-1.jpg" alt=""></a></li>
                     <li><a href="javascript:;"><img src="image/view-2.jpg" alt=""></a></li>
@@ -136,7 +136,7 @@
                 <a href="javascript:;" class="hot-load">所有分类&gt;</a>
             </div>
             <div class="section">
-                <h3>热门歌单<span>PLAYLIST</span></h3>
+                <h3><a id = "mscList"></a>热门歌单<span>PLAYLIST</span></h3>
                 <ul class="hot-list">
                     <li><img src="image/player-2.jpg" alt=""></li>
                     <li><img src="image/player-3.jpg" alt=""></li>
@@ -148,7 +148,7 @@
 
         <div class="column main-rank">
             <div class="section">
-                <h3>排行榜<span>RANKLIST</span></h3>
+                <h3><a id = "rank"></a>排行榜<span>RANKLIST</span></h3>
                 <div class="rank">
                     <dl class="rank-blk">
                         <dt class="top">
@@ -156,7 +156,7 @@
                             <div class="dt-txt">
                                 <a href="javascript:;" class="title">云音乐飙升榜</a>
                                 <a href="javascript:;" class="icon icon-play"></a>
-                                <a href="javascript:;" class="icon icon-store" data-type="up"></a>
+                               <!--  <a href="javascript:;" class="icon icon-store" data-type="up"></a> -->
                             </div>
                         </dt>
                     </dl>
@@ -167,7 +167,7 @@
                             <div class="dt-txt">
                                 <a href="javascript:;" class="title">云音乐新歌榜</a>
                                 <a href="javascript:;" class="icon icon-play"></a>
-                                <a href="javascript:;" class="icon icon-store" data-type="new"></a>
+                               <!--  <a href="javascript:;" class="icon icon-store" data-type="new"></a> -->
                             </div>
                         </dt>
                     </dl>
@@ -178,7 +178,7 @@
                             <div class="dt-txt">
                                 <a href="javascript:;" class="title">原创歌曲榜</a>
                                 <a href="javascript:;" class="icon icon-play"></a>
-                                <a href="javascript:;" class="icon icon-store" data-type="create"></a>
+                                <!-- <a href="javascript:;" class="icon icon-store" data-type="create"></a> -->
                             </div>
                         </dt>
                     </dl>
@@ -204,9 +204,9 @@
                 <li><a href="javascript:;"> 客户服务</a></li><li>-</li>
                 <li><a href="javascript:;"> 服务条款</a></li><li>-</li>
                 <li><a href="javascript:;"> 网站导航</a></li>
-                <span>Lyric旗下版权所有©1997-2015 </span>
+                <span>个人未知版权所有©1995-2018 </span>
             </ul>
-            <p>网络文化经营许可证：粤网文[2014]0332-034号</p>
+            <p>网络文化经营许可证：粤网文[2018]0000-007号</p>
         </div>
         <a class="feedback" href="javascript:;"><i></i>意见反馈</a> 
     </div>

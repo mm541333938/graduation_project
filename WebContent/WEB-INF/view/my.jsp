@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Lyric~音乐工厂</title>
+    <title>Music Walking</title>
     <link rel="stylesheet" href="css/frame.css">
     <link rel="stylesheet" href="css/music.css">
     <link rel="stylesheet" href="css/my.css">
@@ -11,7 +11,7 @@
 <body>  
 <div class="header">
     <div class="header-center center">
-        <h1>Lyric 音乐场</h1>
+        <h1>Soul~ 音乐场</h1>
         <ul class="nav">
             <li><a href="./index" class="active">发现音乐</a></li>
             <li><a href="./my">我的音乐</a></li>
@@ -40,11 +40,11 @@
         <div class="center">
             <ul class="sub-nav">
                 <li><a class="active" href="javascript:;">推荐</a></li>
-                <li><a href="javascript:;">排行榜</a></li>
-                <li><a href="javascript:;">歌单</a></li>
-                <li><a href="javascript:;">主播电台</a></li>
-                <li><a href="javascript:;">歌手</a></li>
-                <li><a href="javascript:;">新碟上架</a></li>
+                <li><a href="./index#rank">排行榜</a></li>
+                <li><a href="./index#mscList">歌单</a></li>
+				<!-- <li><a href="javascript:;">主播电台</a></li>
+				<li><a href="javascript:;">歌手</a></li> -->
+				<li><a href="./index#newCD">新碟上架</a></li>
             </ul>
         </div>
     </div>
@@ -55,8 +55,8 @@
         <div class="main-title column">
             <div class="title-img"></div>
             <div class="title-info">
-                <h3><span></span><input type="button" value="编辑个人资料"></h3>
-                <div class="sml sml-area">所在地区：广东省-汕头市</div>
+                <h3><span></span><a href="./update"><input type="button" value="编辑个人资料"></a></h3>
+                <div class="sml sml-area">所在地区：辽宁省-大连市</div>
                 <div class="sml sml-age">年龄：00后</div>
             </div>
             
@@ -67,7 +67,7 @@
             <ul></ul>
         </div>
 
-        <div class="main-mform column">
+        <!-- <div class="main-mform column">
             <h3>我的歌单</h3>
             <ul></ul>
         </div>
@@ -75,7 +75,7 @@
         <div class="main-mfriend column">
             <h3>我的好友</h3>
             <ul></ul>
-        </div>
+        </div> -->
 
     </div>
 </div>

@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
+encoding//src/model/MusicModel.java=UTF-8
+encoding//src/model/NewsModel.java=UTF-8
+encoding//src/model/db/Connector.java=UTF-8
+encoding//src/model/db/DbHelper.java=UTF-8
 encoding/<project>=UTF-8

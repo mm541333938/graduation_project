@@ -3,8 +3,9 @@ package model;
 import java.sql.Date;
 
 /**
+ * 数据库歌手信息模型
  * 
- * @author Pluto 数据库歌手信息模型
+ * @author R.kyo
  *
  */
 public class SingerModel {
@@ -12,6 +13,7 @@ public class SingerModel {
 	private String singer_name;
 	private String country;
 	private Date birthday;
+	int label = 0;
 
 	public int getSinger_id() {
 		return singer_id;
